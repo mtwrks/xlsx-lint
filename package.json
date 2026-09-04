@@ -2,12 +2,47 @@
   "name": "xlsx-lint",
   "version": "1.0.0",
   "description": "Find Excel formulas that break their own pattern — in CI. Zero dependencies, runs locally, nothing is uploaded.",
-  "keywords": ["xlsx","excel","spreadsheet","lint","ci","formula","audit","review","diff","github-action","xlsx-diff","excel-diff"],
+  "keywords": [
+    "xlsx",
+    "excel",
+    "spreadsheet",
+    "lint",
+    "ci",
+    "formula",
+    "audit",
+    "review",
+    "diff",
+    "github-action",
+    "xlsx-diff",
+    "excel-diff"
+  ],
   "license": "MIT",
   "type": "module",
-  "bin": { "xlsx-lint": "src/cli.mjs" },
-  "exports": { ".": "./src/engine.mjs" },
-  "files": ["src", "README.md", "LICENSE", "action.yml"],
-  "engines": { "node": ">=18" },
-  "scripts": { "test": "node test/cli.test.mjs && node test/parity.test.mjs" }
+  "bin": {
+    "xlsx-lint": "src/cli.mjs"
+  },
+  "exports": {
+    ".": "./src/engine.mjs"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE",
+    "action.yml"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node test/cli.test.mjs && node test/parity.test.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mtwrks/xlsx-lint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mtwrks/xlsx-lint/issues"
+  },
+  "homepage": "https://github.com/mtwrks/xlsx-lint#readme",
+  "author": "Mintworks"
 }

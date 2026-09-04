@@ -53,7 +53,7 @@ xlsx-lint --list-checks                   # the twelve checks
 ## GitHub Action
 
 ```yaml
-- uses: vaananenvesamatti-ship-it/xlsx-lint@v1
+- uses: mtwrks/xlsx-lint@v1
   with:
     path: models/
     severity: high
