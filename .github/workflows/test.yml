@@ -21,3 +21,34 @@ jobs:
         # Skips automatically — it compares against a commercial product that
         # is not in this repository.
         run: node test/parity.test.mjs
+
+  # Runs the composite action itself, rather than only the CLI it wraps.
+  # Without this the action.yml wiring ships untested.
+  action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Action passes on a clean workbook
+        uses: ./
+        with:
+          path: test/fixtures/fixture-clean.xlsx
+          severity: high
+          recursive: "false"
+      - name: Action fails on a defective workbook
+        id: bad
+        continue-on-error: true
+        uses: ./
+        with:
+          path: test/fixtures/fixture-defective.xlsx
+          severity: high
+          recursive: "false"
+      - name: Assert the defective run actually failed
+        run: |
+          if [ "${{ steps.bad.outcome }}" != "failure" ]; then
+            echo "The action passed a defective workbook — a lint that cannot fail is worse than none."
+            exit 1
+          fi
+          echo "Defective workbook correctly failed the step."
