@@ -1,0 +1,23 @@
+name: test
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ["18", "20", "22"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      # No install step: xlsx-lint has zero dependencies, and keeping the
+      # workflow dependency-free is part of what the tool claims.
+      - run: node test/cli.test.mjs
+      - name: Engine parity
+        # Skips automatically — it compares against a commercial product that
+        # is not in this repository.
+        run: node test/parity.test.mjs
